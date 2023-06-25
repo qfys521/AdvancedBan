@@ -3,7 +3,7 @@ package cn.qfys521.xiaoming.plugin
 import cn.chuanwise.xiaoming.plugin.JavaPlugin
 import cn.qfys521.xiaoming.plugin.Commands.AdvancedBanCommands
 import cn.qfys521.xiaoming.plugin.ConfigurationFiles.Configurations
-import cn.qfys521.xiaoming.plugin.EventTriggers.InteractEventTrigger
+import cn.qfys521.xiaoming.plugin.EventTriggers.MessageEventTrigger
 import lombok.Data
 import lombok.EqualsAndHashCode
 import lombok.Getter
@@ -21,7 +21,7 @@ class AdvancedBanPlugin : JavaPlugin() {
         dataFolder.mkdirs()
         configurations = setupConfiguration(Configurations::class.java) { Configurations() }
         getXiaoMingBot().interactorManager.registerInteractors(AdvancedBanCommands(), this)
-        getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(InteractEventTrigger(), this.getINSTANCE())
+        getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(MessageEventTrigger(), this.getINSTANCE())
 
     }
 
