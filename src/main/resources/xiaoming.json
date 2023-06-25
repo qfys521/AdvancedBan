@@ -1,5 +1,5 @@
 {
-  "main": "cn.qfys521.xiaoming.plugin.AdvancedBan",
+  "main": "cn.qfys521.xiaoming.plugin.AdvancedBanPlugin",
   "name": "AdvancedBan",
   "author": "qfys521",
   "version": "1.0-SNAPSHOT"
