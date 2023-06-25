@@ -12,7 +12,7 @@ class InteractEventTrigger : SimpleListeners<AdvancedBanPlugin>() {
     fun onCommand(e: MessageEvent) {
         val inWhiteList = plugin.configurations?.whiteList?.contains(e.user.code)
         val inBanList = plugin.configurations?.banList?.contains(e.user.code)
-        if (((inWhiteList != null)or(inWhiteList != true))or((inBanList != null)or(inBanList == true))) {
+        if (((inWhiteList != null)or(inWhiteList != true)) and ((inBanList != null)or(inBanList == true))) {
             e.cancel()
             return
         }
