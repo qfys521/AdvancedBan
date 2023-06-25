@@ -8,9 +8,17 @@ import cn.chuanwise.xiaoming.user.XiaoMingUser
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
 
 class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
-    @Filter(COMMANDHEAD + "ban {qq}")
+    @Filter(COMMANDHEAD + "banlist add {qq}")
     @Required(PERMISSIONHEAD + "ban.add")
     fun AddBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
+        plugin!!.configurations?.banList?.add(qq)
+        sender.sendMessage("已将该用户添加至封禁名单。")
+        plugin!!.configurations?.saveOrFail()
+    }
+
+    @Filter(COMMANDHEAD + "ban {qq}")
+    @Required(PERMISSIONHEAD + "ban.add")
+    fun AddBanList2(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
         plugin!!.configurations?.banList?.add(qq)
         sender.sendMessage("已将该用户添加至封禁名单。")
         plugin!!.configurations?.saveOrFail()
@@ -24,13 +32,22 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         plugin!!.configurations?.saveOrFail()
     }
 
-    @Filter(COMMANDHEAD + "unabn {qq}")
+    @Filter(COMMANDHEAD + "banlist remove {qq}")
     @Required(PERMISSIONHEAD + "ban.remove")
     fun RemoveBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
         plugin!!.configurations?.banList?.remove(qq)
         sender.sendMessage("已将该用户移出封禁名单。")
         plugin!!.configurations?.saveOrFail()
     }
+
+    @Filter(COMMANDHEAD + "unban {qq}")
+    @Required(PERMISSIONHEAD + "ban.remove")
+    fun RemoveBanList2(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
+        plugin!!.configurations?.banList?.remove(qq)
+        sender.sendMessage("已将该用户移出封禁名单。")
+        plugin!!.configurations?.saveOrFail()
+    }
+
 
     @Filter(COMMANDHEAD + "whitelist remove {qq}")
     @Required(PERMISSIONHEAD + "whitelist.remove")
@@ -41,7 +58,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     }
 
     companion object {
-        const val COMMANDHEAD = "AdvancedBan_"
+        const val COMMANDHEAD = "AdvancedBan "
         const val PERMISSIONHEAD = "advanced."
     }
 }
