@@ -41,7 +41,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     }
 
     companion object {
-        const val COMMANDHEAD = "AdvancedBan:"
+        const val COMMANDHEAD = "AdvancedBan_"
         const val PERMISSIONHEAD = "advanced."
     }
 }
