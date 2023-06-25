@@ -11,33 +11,33 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "ban {qq}")
     @Required(PERMISSIONHEAD + "ban.add")
     fun AddBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.banList!!.banList.add(qq)
+        plugin!!.configurations!!.banList.add(qq)
         sender.sendMessage("已将该用户添加至封禁名单。")
-        plugin!!.banList!!.saveOrFail()
+        plugin!!.configurations!!.saveOrFail()
     }
 
     @Filter(COMMANDHEAD + "whitelist add {qq}")
     @Required(PERMISSIONHEAD + "whitelist.add")
     fun AddWhiteList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.whiteList!!.whiteList.add(qq)
+        plugin!!.configurations!!.whiteList.add(qq)
         sender.sendMessage("已将该用户添加至白名单。")
-        plugin!!.whiteList!!.saveOrFail()
+        plugin!!.configurations!!.saveOrFail()
     }
 
     @Filter(COMMANDHEAD + "unabn {qq}")
     @Required(PERMISSIONHEAD + "ban.remove")
     fun RemoveBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.banList!!.banList.remove(qq)
+        plugin!!.configurations!!.banList.remove(qq)
         sender.sendMessage("已将该用户移出封禁名单。")
-        plugin!!.banList!!.saveOrFail()
+        plugin!!.configurations!!.saveOrFail()
     }
 
     @Filter(COMMANDHEAD + "whitelist remove {qq}")
     @Required(PERMISSIONHEAD + "whitelist.remove")
     fun RemoveWhiteList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.whiteList!!.whiteList.remove(qq)
+        plugin!!.configurations!!.whiteList.remove(qq)
         sender.sendMessage("已将该用户移除白名单。")
-        plugin!!.whiteList!!.saveOrFail()
+        plugin!!.configurations!!.saveOrFail()
     }
 
     companion object {
