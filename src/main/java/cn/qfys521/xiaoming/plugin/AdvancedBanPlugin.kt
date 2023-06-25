@@ -18,15 +18,16 @@ class AdvancedBanPlugin : JavaPlugin() {
     var banList: BanList? = null
     var whiteList: WhiteList? = null
     override fun onLoad() {
-        getXiaoMingBot().interactorManager.registerInteractors(AdvancedBanCommands(), this)
-        getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(InteractEventTrigger(), this.getINSTANCE())
         val dataFolder = dataFolder
         dataFolder.mkdirs()
         banList = setupConfiguration(BanList::class.java) { BanList() }
         whiteList = setupConfiguration(WhiteList::class.java) { WhiteList() }
+        getXiaoMingBot().interactorManager.registerInteractors(AdvancedBanCommands(), this)
+        getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(InteractEventTrigger(), this.getINSTANCE())
+
     }
 
-    public fun getINSTANCE(): AdvancedBanPlugin {
+    fun getINSTANCE(): AdvancedBanPlugin {
         return INSTANCE;
     }
 
