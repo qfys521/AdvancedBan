@@ -10,19 +10,13 @@ import java.util.*
 class MessageEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
     @EventListener(priority = ListenerPriority.HIGHEST)
     fun onCommand(event: MessageEvent) {
-        val inWhiteList: Boolean
         val inBanList: Boolean
-        inWhiteList = try {
-            Objects.requireNonNull(plugin!!.configurations)!!.whiteList.contains(event.user.code)
-        } catch (e: NullPointerException) {
-            false
-        }
         inBanList = try {
             Objects.requireNonNull(plugin!!.configurations)!!.banList.contains(event.user.code)
         } catch (e: NullPointerException) {
             false
         }
-        if (!inWhiteList || inBanList) {
+        if (inBanList) {
             event.cancel()
             return
         }
