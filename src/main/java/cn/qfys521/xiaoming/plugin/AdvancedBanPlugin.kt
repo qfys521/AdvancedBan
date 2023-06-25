@@ -1,9 +1,9 @@
 package cn.qfys521.xiaoming.plugin
 
 import cn.chuanwise.xiaoming.plugin.JavaPlugin
-import cn.qfys521.xiaoming.plugin.Commands.AdvancedBanCommands
-import cn.qfys521.xiaoming.plugin.ConfigurationFiles.Configurations
-import cn.qfys521.xiaoming.plugin.EventTriggers.MessageEventTrigger
+import cn.qfys521.xiaoming.plugin.commands.AdvancedBanCommands
+import cn.qfys521.xiaoming.plugin.configurationFiles.Configurations
+import cn.qfys521.xiaoming.plugin.eventTriggers.MessageEventTrigger
 import lombok.Data
 import lombok.EqualsAndHashCode
 import lombok.Getter

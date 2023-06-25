@@ -1,4 +1,4 @@
-package cn.qfys521.xiaoming.plugin.ConfigurationFiles
+package cn.qfys521.xiaoming.plugin.configurationFiles
 
 import cn.chuanwise.xiaoming.preservable.SimplePreservable
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
@@ -12,6 +12,8 @@ import lombok.Setter
 @Setter
 @Data
 class Configurations : SimplePreservable<AdvancedBanPlugin>() {
+        var BanListMode:Boolean = true;
+        var WhiteListMode:Boolean = false
         var banList = ArrayList<Long>()
         var whiteList = ArrayList<Long>()
 
