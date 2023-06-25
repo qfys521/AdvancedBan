@@ -3,7 +3,7 @@ XiaoMingBotPlugin (author:qfys521)
 
 ---
 
-<h6>This Plugin has `no affiliation` with Minecraft Plugin `AdvancedBan`.</h6>
+*This Plugin has `no affiliation` with Minecraft Plugin `AdvancedBan`.*
 
 
 ```kotlin

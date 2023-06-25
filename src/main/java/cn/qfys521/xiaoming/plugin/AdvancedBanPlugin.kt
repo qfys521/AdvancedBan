@@ -26,7 +26,7 @@ class AdvancedBanPlugin : JavaPlugin() {
         whiteList = setupConfiguration(WhiteList::class.java) { WhiteList() }
     }
 
-    private fun getINSTANCE(): AdvancedBanPlugin {
+    public fun getINSTANCE(): AdvancedBanPlugin {
         return INSTANCE;
     }
 
