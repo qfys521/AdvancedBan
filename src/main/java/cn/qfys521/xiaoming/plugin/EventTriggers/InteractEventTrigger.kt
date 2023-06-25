@@ -7,8 +7,8 @@ import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
 
 class InteractEventTrigger : SimpleListeners<AdvancedBanPlugin>() {
     fun onCommand(e: MessageEvent) {
-        val inWhiteList = plugin!!.whiteList?.whiteList?.contains(e.user.code)
-        val inBanList = plugin!!.banList?.banList?.contains(e.user.code)
+        val inWhiteList = plugin!!.configurations?.whiteList?.contains(e.user.code)
+        val inBanList = plugin!!.configurations?.banList?.contains(e.user.code)
         if (inWhiteList != true || inBanList == true) {
             e.cancel()
             return
