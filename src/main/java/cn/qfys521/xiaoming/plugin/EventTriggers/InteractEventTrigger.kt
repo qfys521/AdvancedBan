@@ -4,7 +4,7 @@ import cn.chuanwise.xiaoming.event.InteractEvent
 import cn.chuanwise.xiaoming.event.SimpleListeners
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
 
-class InteractEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
+class InteractEventTrigger : SimpleListeners<AdvancedBanPlugin>() {
     fun onCommand(e: InteractEvent) {
         val inWhiteList = plugin!!.whiteList?.whiteList?.contains(e.context.user.code)
         val inBanList = plugin!!.banList?.banList?.contains(e.context.user.code)

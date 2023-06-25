@@ -11,6 +11,6 @@ import lombok.Setter
 @Data
 @Setter
 @Getter
-class WhiteList : SimplePreservable<AdvancedBanPlugin?>() {
+class WhiteList : SimplePreservable<AdvancedBanPlugin>() {
     var whiteList = ArrayList<Long>()
 }

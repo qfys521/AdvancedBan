@@ -7,7 +7,7 @@ import cn.chuanwise.xiaoming.interactor.SimpleInteractors
 import cn.chuanwise.xiaoming.user.XiaoMingUser
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
 
-class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin?>() {
+class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "ban {qq}")
     @Required(PERMISSIONHEAD + "ban.add")
     fun AddBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {

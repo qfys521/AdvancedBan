@@ -11,6 +11,6 @@ import lombok.Setter
 @Getter
 @Setter
 @Data
-class BanList : SimplePreservable<AdvancedBanPlugin?>() {
+class BanList : SimplePreservable<AdvancedBanPlugin>() {
     var banList = ArrayList<Long>()
 }
