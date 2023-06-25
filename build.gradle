@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0-RC'
 }
 
 group = 'cn.qfys521.xiaoming.plugin'
@@ -7,13 +8,21 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    google()
+    mavenLocal()
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.projectlombok:lombok:1.18.22'
+    compileOnly fileTree(dir: 'libs' , includes: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(11)
 }
