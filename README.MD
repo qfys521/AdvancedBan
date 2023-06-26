@@ -1,10 +1,10 @@
 # AdvancedBan
+
 XiaoMingBotPlugin (author:qfys521)
 
 ---
 
 *This Plugin has `no affiliation` with Minecraft Plugin `AdvancedBan`.*
-
 
 ```kotlin
 fun AddBanList(sender: XiaoMingUser<*>, qq: Long)

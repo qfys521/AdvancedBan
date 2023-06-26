@@ -13,6 +13,7 @@ class MessageEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
 
         var banListMode = plugin!!.configurations!!.BanListMode
         var whiteListMode = plugin!!.configurations!!.WhiteListMode
+        var globalBanListMode = plugin!!.globalBanOrWhiteListConfigurations!!.GlobalBanListMode
         var inBanList: Boolean = try {
             Objects.requireNonNull(plugin!!.configurations)!!.banList.contains(event.user.code)
         } catch (e: NullPointerException) {
@@ -20,6 +21,16 @@ class MessageEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
         }
         var inWhiteList: Boolean = try {
             Objects.requireNonNull(plugin!!.configurations)!!.whiteList.contains(event.user.code)
+        } catch (e: NullPointerException) {
+            false
+        }
+        var inGlobalBanList = try {
+            Objects.requireNonNull(
+                plugin!!.globalBanOrWhiteListConfigurations!!.GlobalBanList.getOrDefault(
+                    event.user.code,
+                    null
+                )
+            )
         } catch (e: NullPointerException) {
             false
         }
@@ -33,32 +44,38 @@ class MessageEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
 //        }else if(){
 //
 //        }
-        if(banListMode and whiteListMode){
-            if (!inWhiteList and inBanList){
+        if (banListMode and whiteListMode and globalBanListMode) {
+            if (!inWhiteList and inBanList) {
+                event.cancel()
+                return
+            } else if (!inWhiteList and !inBanList and globalBanListMode) {
+                event.cancel()
+            } else if (inBanList and inGlobalBanList) {
+                event.cancel()
+            }
+        } else if (!banListMode and whiteListMode and !globalBanListMode) {
+            if (!inWhiteList) {
                 event.cancel()
                 return
             }
-        }else if(!banListMode and whiteListMode){
-            if(!inWhiteList){
+        } else if (banListMode and !whiteListMode and globalBanListMode) {
+            if (inBanList or inGlobalBanList or (inBanList and inGlobalBanList)) {
                 event.cancel()
                 return
-            }
-        }else if(banListMode and !whiteListMode){
-            if (inBanList){
-                event.cancel()
+
+            } else if (!banListMode and !whiteListMode and !globalBanListMode) {
                 return
+            } else {
+                for (i in 0..14) {
+                    logger.error("please check your plugin configurations.")
+                }
+                getXiaoMingBot().pluginManager.disablePlugin(plugin)
             }
-        }else if(!banListMode and !whiteListMode){
-            return
-        }else{
-            for (i in 0..14){
-                logger.error("please check your plugin configurations.")
-            }
-            getXiaoMingBot().pluginManager.disablePlugin(plugin)
+
+
         }
-
-
     }
-
-
 }
+
+
+

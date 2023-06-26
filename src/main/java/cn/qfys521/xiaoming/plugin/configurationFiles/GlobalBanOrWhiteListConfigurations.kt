@@ -11,10 +11,10 @@ import lombok.Setter
 @Getter
 @Setter
 @Data
-class Configurations : SimplePreservable<AdvancedBanPlugin>() {
-    var BanListMode: Boolean = true;
-    var WhiteListMode: Boolean = false
-    var banList = ArrayList<Long>()
-    var whiteList = ArrayList<Long>()
+class GlobalBanOrWhiteListConfigurations : SimplePreservable<AdvancedBanPlugin>() {
+    var GlobalBanListMode: Boolean = false
+    var KickedOutOfGroupAfterBanMode: HashMap<Long, Boolean> = HashMap()
+    var GlobalBanList: HashMap<Long, Boolean> = HashMap()
+
 
 }
