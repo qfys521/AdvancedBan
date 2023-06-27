@@ -7,6 +7,7 @@ import cn.chuanwise.xiaoming.interactor.SimpleInteractors
 import cn.chuanwise.xiaoming.user.GroupXiaoMingUser
 import cn.chuanwise.xiaoming.user.XiaoMingUser
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
+import net.mamoe.mirai.contact.PermissionDeniedException
 
 
 class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
@@ -17,9 +18,11 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         if (sender is GroupXiaoMingUser) {
             if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
                 try {
-                    sender.memberContact.kick(qq.toString())
-                } catch (e: Exception) {
-                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                    sender.memberContact.kick("kick by AdvancedBan")
+                } catch (e: PermissionDeniedException) {
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是没有权限。")
+                }catch (e: Exception){
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常: ",e)
                 }
             }
         }
@@ -34,9 +37,11 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         if (sender is GroupXiaoMingUser) {
             if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
                 try {
-                    sender.memberContact.kick(qq.toString())
-                } catch (e: Exception) {
-                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                    sender.memberContact.kick("kick by AdvancedBan")
+                } catch (e: PermissionDeniedException) {
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是没有权限。")
+                }catch (e: Exception){
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常: ",e)
                 }
             }
         }
@@ -148,9 +153,11 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         if (sender is GroupXiaoMingUser) {
             if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
                 try {
-                    sender.memberContact.kick(qq.toString())
-                } catch (e: Exception) {
-                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                    sender.memberContact.kick("kick by AdvancedBan")
+                } catch (e: PermissionDeniedException) {
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是没有权限。")
+                }catch (e: Exception){
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常: ",e)
                 }
             }
         }
@@ -165,9 +172,11 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         if (sender is GroupXiaoMingUser) {
             if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
                 try {
-                    sender.memberContact.kick(qq.toString())
-                } catch (e: Exception) {
-                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                    sender.memberContact.kick("kick by AdvancedBan")
+                } catch (e: PermissionDeniedException) {
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是没有权限。")
+                }catch (e: Exception){
+                    logger.error("群聊[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常: ",e)
                 }
             }
         }
