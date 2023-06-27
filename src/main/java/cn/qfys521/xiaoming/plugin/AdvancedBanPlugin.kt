@@ -22,7 +22,7 @@ class AdvancedBanPlugin : JavaPlugin() {
         val dataFolder = dataFolder
         dataFolder.mkdirs()
         configurations = setupConfiguration(Configurations::class.java) { Configurations() }
-        globalBanOrWhiteListConfigurations = setupConfiguration(GlobalBanOrWhiteListConfigurations::class.java,"globalBanOrWhiteListConfigurations.json")
+        globalBanOrWhiteListConfigurations = setupConfiguration(GlobalBanOrWhiteListConfigurations::class.java,"globalBanOrWhiteListConfigurations.json") {GlobalBanOrWhiteListConfigurations()}
         getXiaoMingBot().interactorManager.registerInteractors(AdvancedBanCommands(), this)
         getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(MessageEventTrigger(), this.getINSTANCE())
 

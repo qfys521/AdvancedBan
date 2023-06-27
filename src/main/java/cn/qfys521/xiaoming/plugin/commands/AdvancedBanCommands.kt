@@ -128,7 +128,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "AddThisGroupBanAutoKick")
     @Required(PERMISSIONHEAD + "groupautokick.add")
     fun addGroupAutoKick(sender: GroupXiaoMingUser) {
-        plugin!!.globalBanOrWhiteListConfigurations!!.kickedOutOfGroupAfterBanMode.put(sender.groupCode, true)
+        plugin?.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.put(sender.groupCode, true)
         sender.sendMessage("已在群[" + sender.groupInformation.alias + "]启用封禁自动踢出。")
         plugin!!.globalBanOrWhiteListConfigurations!!.saveOrFail()
     }
