@@ -16,13 +16,16 @@ import lombok.Setter
 @Setter
 class AdvancedBanPlugin : JavaPlugin() {
     var configurations: Configurations? = null
-    var globalBanOrWhiteListConfigurations:GlobalBanOrWhiteListConfigurations? = null
+    var globalBanOrWhiteListConfigurations: GlobalBanOrWhiteListConfigurations? = null
 
     override fun onLoad() {
         val dataFolder = dataFolder
         dataFolder.mkdirs()
         configurations = setupConfiguration(Configurations::class.java) { Configurations() }
-        globalBanOrWhiteListConfigurations = setupConfiguration(GlobalBanOrWhiteListConfigurations::class.java,"globalBanOrWhiteListConfigurations.json") {GlobalBanOrWhiteListConfigurations()}
+        globalBanOrWhiteListConfigurations = setupConfiguration(
+            GlobalBanOrWhiteListConfigurations::class.java,
+            "globalBanOrWhiteListConfigurations.json"
+        ) { GlobalBanOrWhiteListConfigurations() }
         getXiaoMingBot().interactorManager.registerInteractors(AdvancedBanCommands(), this)
         getXiaoMingBot().eventManager.registerListeners<AdvancedBanPlugin>(MessageEventTrigger(), this.getINSTANCE())
 
