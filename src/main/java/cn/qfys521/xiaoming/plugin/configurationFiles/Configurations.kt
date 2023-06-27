@@ -12,9 +12,9 @@ import lombok.Setter
 @Setter
 @Data
 class Configurations : SimplePreservable<AdvancedBanPlugin>() {
-    var BanListMode: Boolean = true;
-    var WhiteListMode: Boolean = false
-    var banList = ArrayList<Long>()
-    var whiteList = ArrayList<Long>()
+        var BanListMode:Boolean = true;
+        var WhiteListMode:Boolean = false
+        var banList = ArrayList<Long>()
+        var whiteList = ArrayList<Long>()
 
 }

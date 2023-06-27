@@ -12,9 +12,9 @@ import lombok.Setter
 @Setter
 @Data
 class GlobalBanOrWhiteListConfigurations : SimplePreservable<AdvancedBanPlugin>() {
-    var GlobalBanListMode: Boolean = false
-    var KickedOutOfGroupAfterBanMode: HashMap<Long, Boolean> = HashMap()
-    var GlobalBanList: HashMap<Long, Boolean> = HashMap()
+    var globalBanListMode: Boolean = false
+    var kickedOutOfGroupAfterBanMode: HashMap<Long, Boolean> = HashMap()
+    var globalBanList: HashMap<Long, Boolean> = HashMap()
 
 
 }

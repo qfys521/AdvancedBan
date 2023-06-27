@@ -14,6 +14,15 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Required(PERMISSIONHEAD + "ban.add")
     fun addBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
         plugin!!.configurations?.banList?.add(qq)
+        if (sender is GroupXiaoMingUser) {
+            if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
+                try {
+                    sender.memberContact.kick(qq.toString())
+                } catch (e: Exception) {
+                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                }
+            }
+        }
         sender.sendMessage("已将该用户添加至封禁名单。")
         plugin!!.configurations?.saveOrFail()
     }
@@ -22,6 +31,15 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Required(PERMISSIONHEAD + "ban.add")
     fun addBanList2(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
         plugin!!.configurations?.banList?.add(qq)
+        if (sender is GroupXiaoMingUser) {
+            if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
+                try {
+                    sender.memberContact.kick(qq.toString())
+                } catch (e: Exception) {
+                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                }
+            }
+        }
         sender.sendMessage("已将该用户添加至封禁名单。")
         plugin!!.configurations?.saveOrFail()
     }
@@ -95,11 +113,11 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Required(PERMISSIONHEAD + "changemode.globalbanlistmode")
     fun changeGlobalBanListMode(sender: XiaoMingUser<*>, @FilterParameter("mode") mode: String) {
         if (mode.equals("启用") or mode.equals("true")) {
-            plugin!!.globalBanOrWhiteListConfigurations!!.GlobalBanListMode = true
+            plugin!!.globalBanOrWhiteListConfigurations!!.globalBanListMode = true
             sender.sendMessage("已启用全局黑名单模式。")
             sender.sendMessage("在该模式下的拉黑将会自动进入全局拉黑模式。")
         } else if (mode.equals("停用") or mode.equals("false")) {
-            plugin!!.globalBanOrWhiteListConfigurations!!.GlobalBanListMode = false
+            plugin!!.globalBanOrWhiteListConfigurations!!.globalBanListMode = false
             sender.sendMessage("已停用全局黑名单模式。")
         } else {
             sender.sendError("mode只能为Boolean")
@@ -110,7 +128,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "AddThisGroupBanAutoKick")
     @Required(PERMISSIONHEAD + "groupautokick.add")
     fun addGroupAutoKick(sender: GroupXiaoMingUser) {
-        plugin!!.globalBanOrWhiteListConfigurations!!.KickedOutOfGroupAfterBanMode.put(sender.groupCode, true)
+        plugin!!.globalBanOrWhiteListConfigurations!!.kickedOutOfGroupAfterBanMode.put(sender.groupCode, true)
         sender.sendMessage("已在群[" + sender.groupInformation.alias + "]启用封禁自动踢出。")
         plugin!!.globalBanOrWhiteListConfigurations!!.saveOrFail()
     }
@@ -118,7 +136,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "RemoveThisGroupBanAutoKick")
     @Required(PERMISSIONHEAD + "groupautokick.remove")
     fun removeGroupAutoKick(sender: GroupXiaoMingUser) {
-        plugin!!.globalBanOrWhiteListConfigurations!!.KickedOutOfGroupAfterBanMode.put(sender.groupCode, false)
+        plugin!!.globalBanOrWhiteListConfigurations!!.kickedOutOfGroupAfterBanMode.put(sender.groupCode, false)
         sender.sendMessage("已在群[" + sender.groupInformation.alias + "]停用封禁自动踢出。")
         plugin!!.globalBanOrWhiteListConfigurations!!.saveOrFail()
     }
@@ -126,7 +144,16 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "global banlist add {qq}")
     @Required(PERMISSIONHEAD + "global.ban.add")
     fun addgBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.globalBanOrWhiteListConfigurations?.GlobalBanList?.put(qq, true)
+        plugin!!.globalBanOrWhiteListConfigurations?.globalBanList?.put(qq, true)
+        if (sender is GroupXiaoMingUser) {
+            if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
+                try {
+                    sender.memberContact.kick(qq.toString())
+                } catch (e: Exception) {
+                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                }
+            }
+        }
         sender.sendMessage("已将该用户添加至封禁名单。")
         plugin!!.globalBanOrWhiteListConfigurations?.saveOrFail()
     }
@@ -134,7 +161,16 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "global ban {qq}")
     @Required(PERMISSIONHEAD + "global.ban.add")
     fun addgBanList2(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.globalBanOrWhiteListConfigurations?.GlobalBanList?.put(qq, true)
+        plugin!!.globalBanOrWhiteListConfigurations?.globalBanList?.put(qq, true)
+        if (sender is GroupXiaoMingUser) {
+            if (plugin.globalBanOrWhiteListConfigurations?.kickedOutOfGroupAfterBanMode?.get(sender.groupCode) == true) {
+                try {
+                    sender.memberContact.kick(qq.toString())
+                } catch (e: Exception) {
+                    logger.error("Group[" + sender.groupCode + "]启用了封禁踢人选项，但是发生了异常。", e)
+                }
+            }
+        }
         sender.sendMessage("已将该用户添加至封禁名单。")
         plugin!!.globalBanOrWhiteListConfigurations?.saveOrFail()
     }
@@ -143,7 +179,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "global banlist remove {qq}")
     @Required(PERMISSIONHEAD + "global.ban.remove")
     fun removegBanList(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.globalBanOrWhiteListConfigurations?.GlobalBanList?.remove(qq)
+        plugin!!.globalBanOrWhiteListConfigurations?.globalBanList?.remove(qq)
         sender.sendMessage("已将该用户移出封禁名单。")
         plugin!!.globalBanOrWhiteListConfigurations?.saveOrFail()
     }
@@ -151,7 +187,7 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
     @Filter(COMMANDHEAD + "global unban {qq}")
     @Required(PERMISSIONHEAD + "global.ban.remove")
     fun removegBanList2(sender: XiaoMingUser<*>, @FilterParameter("qq") qq: Long) {
-        plugin!!.globalBanOrWhiteListConfigurations?.GlobalBanList?.remove(qq)
+        plugin!!.globalBanOrWhiteListConfigurations?.globalBanList?.remove(qq)
         sender.sendMessage("已将该用户移出封禁名单。")
         plugin!!.globalBanOrWhiteListConfigurations?.saveOrFail()
     }
