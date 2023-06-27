@@ -1,5 +1,5 @@
 # AdvancedBan   
-1.2.1-SNAPSHOT
+1.2.1-test
 > 此版本为测试版
 
 ## 新增
