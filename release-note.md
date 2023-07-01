@@ -3,7 +3,8 @@ v1.3-SNAPSHOT
 > 此版本为测试版
 
 ## 新增
-* 部分代码增加 catch 分支，以便于维护
+* 群聊封禁列表查询
+* 全局封禁列表查询
 
 ## 修复或变更
 * 修复部分bug
@@ -13,4 +14,4 @@ v1.3-SNAPSHOT
 > 暂无
 
 ------
-[qfys521](https://www.github.com/qfys521) Present.
+[qfys521](https`:`//www.github.com/qfys521) Present.
