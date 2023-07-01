@@ -8,6 +8,7 @@ import cn.chuanwise.xiaoming.user.GroupXiaoMingUser
 import cn.chuanwise.xiaoming.user.XiaoMingUser
 import cn.qfys521.xiaoming.plugin.AdvancedBanPlugin
 import net.mamoe.mirai.contact.PermissionDeniedException
+import java.lang.StringBuilder
 
 
 class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
@@ -199,6 +200,35 @@ class AdvancedBanCommands : SimpleInteractors<AdvancedBanPlugin>() {
         plugin!!.globalBanOrWhiteListConfigurations?.globalBanList?.remove(qq)
         sender.sendMessage("已将该用户移出封禁名单。")
         plugin!!.globalBanOrWhiteListConfigurations?.saveOrFail()
+    }
+
+    @Filter(Companion.COMMANDHEAD+"banlist list")
+    @Required(Companion.PERMISSIONHEAD+"banlist.check.group")
+    fun banList(sender: XiaoMingUser<*>){
+        val arrlist = plugin!!.configurations!!.banList
+        if(arrlist.size <=20){
+            var sb = StringBuilder()
+            for (i in 0..arrlist.size){
+                sb.append(arrlist.get(i))
+            }
+            sender.sendMessage("封禁列表为:"
+            +"\n"+sb.toString())
+        }else{
+            sender.sendError("太长了，请手动在配置文件中查看。")
+        }
+    }
+
+    @Filter(Companion.COMMANDHEAD+"banlist list global")
+    @Required(Companion.PERMISSIONHEAD+"banlist.check.global")
+    fun globalBanList(sender: XiaoMingUser<*>){
+        val map = plugin!!.globalBanOrWhiteListConfigurations!!.globalBanList
+        if(map.size <=20){
+            sender.sendMessage("封禁列表为:"
+                    +"\n"+ map.keys
+            )
+        }else{
+            sender.sendError("太长了，请手动在配置文件中查看。")
+        }
     }
 
 

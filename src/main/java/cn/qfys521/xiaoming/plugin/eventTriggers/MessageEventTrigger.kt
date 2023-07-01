@@ -45,8 +45,6 @@ class MessageEventTrigger : SimpleListeners<AdvancedBanPlugin?>() {
             }
             getXiaoMingBot().pluginManager.disablePlugin(plugin)
         }
-
-
     }
     }
 }
