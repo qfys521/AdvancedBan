@@ -11,7 +11,10 @@ v1.3-SNAPSHOT
 
 ## 预告
 
-> 暂无
+> 暂无   
+
+
+**完整更新列表** v1.2.1-SNAPSHOT...v1.3-SNAPSHOT
 
 ------
 [qfys521](https`:`//www.github.com/qfys521) Present.
